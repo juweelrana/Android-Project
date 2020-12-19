@@ -68,9 +68,9 @@ public class ShowMovies extends Fragment {
                         int jBudget = data.getInt("Budget_M");
                         list.add(new Structure(jFilm,jGenre,jYear,jBudget,jGross));
                     }
+                    //Toast.makeText(context,list.size()+"",Toast.LENGTH_LONG).show();
+                    recyclerView.setAdapter(new MyAdapter(list,context));
 
-
-                    Toast.makeText(context,list.get(0).getFilm() + " l ",Toast.LENGTH_LONG).show();
                 }catch (Exception e){}
             }
         }, new Response.ErrorListener() {
