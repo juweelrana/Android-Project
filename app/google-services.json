@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471067816202",
+    "project_id": "abcmovies-a150b",
+    "storage_bucket": "abcmovies-a150b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471067816202:android:d98670d38a61dd66e0caf3",
+        "android_client_info": {
+          "package_name": "com.example.abcmovies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471067816202-kfsi5ccpqnufgerralc53sbm68h0l075.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxbVvtpZqUZszuy3kixBc-5UYL_5AF3XE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471067816202-kfsi5ccpqnufgerralc53sbm68h0l075.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

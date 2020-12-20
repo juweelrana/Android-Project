@@ -1,57 +1,58 @@
 package com.example.abcmovies;
 
 public class Structure {
-    String film,genre;
-    int year, budget, gross;
+    private String Title,Url,Genre;
+    private int Year;
+    private double Rating;
 
     public Structure() {
     }
 
-    public Structure(String film, String genre, int year, int budget, int gross) {
-        this.film = film;
-        this.genre = genre;
-        this.year = year;
-        this.budget = budget;
-        this.gross = gross;
+    public Structure(String title, String url, String genre, int year, double rating) {
+        Title = title;
+        Url = url;
+        Genre = genre;
+        Year = year;
+        Rating = rating;
     }
 
-    public String getFilm() {
-        return film;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setFilm(String film) {
-        this.film = film;
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String url) {
+        Url = url;
     }
 
     public String getGenre() {
-        return genre;
+        return Genre;
     }
 
     public void setGenre(String genre) {
-        this.genre = genre;
+        Genre = genre;
     }
 
     public int getYear() {
-        return year;
+        return Year;
     }
 
     public void setYear(int year) {
-        this.year = year;
+        Year = year;
     }
 
-    public int getBudget() {
-        return budget;
+    public double getRating() {
+        return Rating;
     }
 
-    public void setBudget(int budget) {
-        this.budget = budget;
-    }
-
-    public int getGross() {
-        return gross;
-    }
-
-    public void setGross(int gross) {
-        this.gross = gross;
+    public void setRating(double rating) {
+        Rating = rating;
     }
 }
