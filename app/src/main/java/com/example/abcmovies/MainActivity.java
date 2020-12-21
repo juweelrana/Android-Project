@@ -14,7 +14,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static MainActivity instance;
-    private String name;
     FirebaseAuth mAuth;
 
     @Override
@@ -28,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fLayout,new ShowMovies(getApplicationContext())).addToBackStack(null).commit();
 
+        FragmentTransaction fragmentTransaction5 = fragmentManager.beginTransaction();
+        fragmentTransaction5.replace(R.id.fLayout2,new ShowMovies(getApplicationContext())).addToBackStack(null).commit();
+
+
         addLogRegInRight();
     }
 
@@ -35,13 +38,12 @@ public class MainActivity extends AppCompatActivity {
         return instance;
     }
 
-    public void setUserName(String name,FirebaseAuth mAuth)
+    public void setUserName(FirebaseAuth mAuth)
     {
-        this.name=name;
         this.mAuth=mAuth;
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.logReg,new ShowUserName(getApplicationContext(),name,mAuth)).addToBackStack(null).commit();
+        fragmentTransaction.replace(R.id.logReg,new ShowUserName(getApplicationContext(),mAuth)).addToBackStack(null).commit();
 
     }
 

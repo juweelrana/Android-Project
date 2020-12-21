@@ -20,6 +20,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class SIgnIn extends Fragment {
 
@@ -28,6 +31,8 @@ public class SIgnIn extends Fragment {
     Context context;
 
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef = database.getReference("users");
 
     public SIgnIn() {
 
@@ -68,7 +73,7 @@ public class SIgnIn extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
+                            MainActivity.getInstance().setUserName(mAuth);
                             MainActivity.getInstance().addFavouritesInRight();
                         } else {
                             // If sign in fails, display a message to the user.
@@ -78,4 +83,5 @@ public class SIgnIn extends Fragment {
                 });
 
     }
+
 }

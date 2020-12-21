@@ -91,7 +91,7 @@ public class SignUp extends Fragment {
 
         myRef.child(uId).setValue(userInfo);
 
-        MainActivity.getInstance().setUserName(uFname+" "+uLname,mAuth);
+        MainActivity.getInstance().setUserName(mAuth);
     }
 
     public class nameStructure
