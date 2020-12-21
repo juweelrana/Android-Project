@@ -90,7 +90,7 @@ public class SignUp extends Fragment {
         nameStructure userInfo = new nameStructure(uId,uFname,uLname);
 
         myRef.child(uId).setValue(userInfo);
-
+        MainActivity.getInstance().setLogStatus(true);
         MainActivity.getInstance().setUserName(mAuth);
     }
 

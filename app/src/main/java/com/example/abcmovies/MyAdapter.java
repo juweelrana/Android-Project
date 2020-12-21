@@ -8,19 +8,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<Structure> list;
     private Context context;
+    private DatabaseReference myRef;
+    int serialId=0;
 
     public MyAdapter(){}
     public MyAdapter(List<Structure> list, Context context){
@@ -46,6 +57,43 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.Genre.setText(structure.getGenre());
         holder.Rating.setText(structure.getRating()+"");
         new DownloadImageTask(holder.Cover).execute(structure.getUrl());
+
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MainActivity.getInstance().getLogStatus()==false)
+                {
+                    Toast.makeText(context,"Log In First",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    myRef = FirebaseDatabase.getInstance().getReference("favbs");
+
+                    String movieId = position+"";
+                    String userId = MainActivity.getInstance().getmAuth().getCurrentUser().getUid();
+                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss, dd.MM.yy");
+                    String currentDateandTime = sdf.format(new Date());
+
+                    myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            serialId=(int) snapshot.getChildrenCount();
+                            serialId = serialId+1;
+                            FavStructure favStructure = new FavStructure(userId,currentDateandTime,movieId,serialId+"");
+                            myRef.child(serialId+"").setValue(favStructure);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+                    //Toast.makeText(context,movieId+" "+userId+" "+currentDateandTime,Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -53,10 +101,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return list.size();
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView Title, Genre, Year, Rating;
         ImageView Cover;
+        LinearLayout linearLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,7 +116,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             Genre = itemView.findViewById(R.id.genre);
             Year = itemView.findViewById(R.id.year);
             Rating = itemView.findViewById(R.id.rating);
-
+            linearLayout = itemView.findViewById(R.id.rowDesignId);
         }
     }
 

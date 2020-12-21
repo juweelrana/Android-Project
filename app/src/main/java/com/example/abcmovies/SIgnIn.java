@@ -73,6 +73,7 @@ public class SIgnIn extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            MainActivity.getInstance().setLogStatus(true);
                             MainActivity.getInstance().setUserName(mAuth);
                             MainActivity.getInstance().addFavouritesInRight();
                         } else {

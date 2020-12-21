@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/rowDesignId"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -37,7 +38,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:text="Year"/>
 
@@ -45,7 +45,6 @@
                 android:id="@+id/genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="18sp"
                 android:text="Genre"/>
@@ -54,10 +53,16 @@
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="18sp"
                 android:text="Rating"/>
+
+            <ImageView
+                android:id="@+id/fav"
+                android:layout_marginLeft="10dp"
+                android:layout_width="20dp"
+                android:src="@drawable/add_fav_image"
+                android:layout_height="20dp"/>
 
         </LinearLayout>
 

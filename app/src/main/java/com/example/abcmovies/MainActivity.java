@@ -15,13 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
     private static MainActivity instance;
     FirebaseAuth mAuth;
+    private boolean isLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         instance = this;
-
+        isLogin=false;
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -36,6 +37,20 @@ public class MainActivity extends AppCompatActivity {
 
     public static MainActivity getInstance() {
         return instance;
+    }
+
+    public FirebaseAuth getmAuth()
+    {
+        return mAuth;
+    }
+
+    public boolean getLogStatus()
+    {
+        return isLogin;
+    }
+    public void setLogStatus(boolean isLogin)
+    {
+        this.isLogin=isLogin;
     }
 
     public void setUserName(FirebaseAuth mAuth)
