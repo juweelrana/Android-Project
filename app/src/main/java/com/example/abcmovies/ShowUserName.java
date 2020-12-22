@@ -72,7 +72,9 @@ public class ShowUserName extends Fragment {
             @Override
             public void onClick(View v) {
                 mAuth.getInstance().signOut();
+                MainActivity.getInstance().setLogStatus(false);
                 MainActivity.getInstance().addLogRegInRight();
+                MainActivity.getInstance().setEmptyFragment();
             }
         });
 

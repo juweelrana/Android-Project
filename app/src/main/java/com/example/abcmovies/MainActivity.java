@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static MainActivity instance;
     FirebaseAuth mAuth;
     private boolean isLogin;
+    private List<Structure> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fLayout,new ShowMovies(getApplicationContext())).addToBackStack(null).commit();
-
-        FragmentTransaction fragmentTransaction5 = fragmentManager.beginTransaction();
-        fragmentTransaction5.replace(R.id.fLayout2,new ShowMovies(getApplicationContext())).addToBackStack(null).commit();
-
 
         addLogRegInRight();
     }
@@ -53,6 +51,22 @@ public class MainActivity extends AppCompatActivity {
         this.isLogin=isLogin;
     }
 
+    public List<Structure> getList() {
+        return list;
+    }
+
+    public void setList(List<Structure> list) {
+        this.list = list;
+    }
+
+    public void setEmptyFragment()
+    {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fLayout2,new EmptyFragment()).addToBackStack(null).commit();
+
+    }
+
     public void setUserName(FirebaseAuth mAuth)
     {
         this.mAuth=mAuth;
@@ -73,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fLayout2,new Favourites(getApplicationContext())).addToBackStack(null).commit();
+        fragmentTransaction.replace(R.id.fLayout2,new Favourites(getApplicationContext(),mAuth)).addToBackStack(null).commit();
 
     }
 

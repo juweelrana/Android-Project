@@ -76,6 +76,7 @@ public class ShowMovies extends Fragment {
                         list.add(new Structure(title,cUrl,genre,year,rating));
                     }
                     //Toast.makeText(context,list.size()+"",Toast.LENGTH_LONG).show();
+                    MainActivity.getInstance().setList(list);
                     recyclerView.setAdapter(new MyAdapter(list,context));
 
                 }catch (Exception e){}

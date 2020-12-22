@@ -58,7 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.Rating.setText(structure.getRating()+"");
         new DownloadImageTask(holder.Cover).execute(structure.getUrl());
 
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+        holder.favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(MainActivity.getInstance().getLogStatus()==false)
@@ -81,6 +81,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                             serialId = serialId+1;
                             FavStructure favStructure = new FavStructure(userId,currentDateandTime,movieId,serialId+"");
                             myRef.child(serialId+"").setValue(favStructure);
+                            MainActivity.getInstance().addFavouritesInRight();
                         }
 
                         @Override
@@ -105,7 +106,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView Title, Genre, Year, Rating;
-        ImageView Cover;
+        ImageView Cover,favButton;
         LinearLayout linearLayout;
 
         public ViewHolder(@NonNull View itemView) {
@@ -116,11 +117,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             Genre = itemView.findViewById(R.id.genre);
             Year = itemView.findViewById(R.id.year);
             Rating = itemView.findViewById(R.id.rating);
-            linearLayout = itemView.findViewById(R.id.rowDesignId);
+            favButton = itemView.findViewById(R.id.fav);
         }
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
         public DownloadImageTask(ImageView bmImage) {
